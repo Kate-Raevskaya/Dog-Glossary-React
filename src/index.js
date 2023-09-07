@@ -4,6 +4,9 @@ import Root from './pages/Root';
 import {RouterProvider, createBrowserRouter} from "react-router-dom";
 import Login from "./pages/Login";
 import Main from "./pages/Main";
+import {action as loginAction} from "./pages/Login";
+import PrivateRoute from './pages/PrivateRoute';
+import Saved from "./pages/Saved";
 
 
 const router = createBrowserRouter([
@@ -17,7 +20,12 @@ const router = createBrowserRouter([
             },
             {
                 path: 'login',
-                element: <Login />
+                element: <Login />,
+                action: loginAction
+            },
+            {
+                path: 'private-route',
+                element: <PrivateRoute><Saved/></PrivateRoute>
             }
         ]
     }
