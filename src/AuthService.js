@@ -10,4 +10,14 @@ export default class AuthService {
             return false
         }
     }
+
+    static isAuthed() {
+        let userData = localStorage.getItem('login:password')
+
+        if(userData) {
+            return users.some(user =>
+                `${user.login}:${user.password}` === userData)
+        }
+        return false
+    }
 }

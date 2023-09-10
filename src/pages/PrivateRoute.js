@@ -1,8 +1,11 @@
 import {useAuth} from '../useAuth';
 import {useNavigate} from "react-router-dom";
+import {AuthContext} from "../AuthContext";
+import {useContext} from "react";
+import AuthService from "../AuthService";
 
 export default function PrivateRoute({children}) {
-    let isAuth = useAuth()
+    let {isAuth} = useContext(AuthContext)
     let navigate = useNavigate()
 
     return (

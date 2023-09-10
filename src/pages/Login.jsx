@@ -1,15 +1,21 @@
 import {Form, redirect, useActionData} from "react-router-dom";
 import AuthService from "../AuthService";
+import {useContext} from "react";
+import {AuthContext} from "../AuthContext";
 
-export async function action({request}) {
-    const formData = await request.formData()
-    let userCredential = Object.fromEntries(formData)
-    if (AuthService.login(userCredential.login, userCredential.password)) {
-        return redirect('/private-route')
-    } else {
-        return null
+export function action({setIsAuth}) {
+    return async function ({request}) {
+        const formData = await request.formData()
+        let userCredential = Object.fromEntries(formData)
+        if (AuthService.login(userCredential.login, userCredential.password)) {
+            setIsAuth(true)
+            return redirect('/saved')
+        } else {
+            return null
+        }
     }
 }
+
 
 export default function Login() {
     let info = useActionData()

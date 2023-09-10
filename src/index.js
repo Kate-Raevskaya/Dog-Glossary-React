@@ -3,33 +3,12 @@ import ReactDOM from 'react-dom/client';
 import Root from './pages/Root';
 import {RouterProvider, createBrowserRouter} from "react-router-dom";
 import Login from "./pages/Login";
-import Main from "./pages/Main";
+import DogsSearching from "./pages/DogsSearching";
 import {action as loginAction} from "./pages/Login";
 import PrivateRoute from './pages/PrivateRoute';
 import Saved from "./pages/Saved";
-
-
-const router = createBrowserRouter([
-    {
-        path: '/',
-        element: <Root />,
-        children: [
-            {
-                index: true,
-                element: <Main />
-            },
-            {
-                path: 'login',
-                element: <Login />,
-                action: loginAction
-            },
-            {
-                path: 'private-route',
-                element: <PrivateRoute><Saved/></PrivateRoute>
-            }
-        ]
-    }
-])
+import {AuthContext} from "./AuthContext";
+import {useAuth} from "./useAuth";
 
 
 const root = ReactDOM.createRoot(
@@ -37,6 +16,39 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+      <Main />
   </React.StrictMode>
 );
+
+function Main() {
+    let auth = useAuth()
+
+    const router = createBrowserRouter([
+        {
+            path: '/',
+            element: <Root />,
+            children: [
+                {
+                    index: true,
+                    element: <DogsSearching />
+                },
+                {
+                    path: 'login',
+                    element: <Login />,
+                    action: loginAction(auth)
+                },
+                {
+                    path: 'saved',
+                    element: <PrivateRoute><Saved/></PrivateRoute>
+                }
+            ]
+        }
+    ])
+
+
+    return (
+        <AuthContext.Provider value={auth}>
+            <RouterProvider router={router} />
+        </AuthContext.Provider>
+    )
+}

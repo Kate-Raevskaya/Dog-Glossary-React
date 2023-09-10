@@ -7,7 +7,7 @@ export default function Root() {
             <nav>
                 <NavLink to={''}>Search Dog</NavLink>
                 <NavLink to={'login'}>Log in</NavLink>
-                <NavLink to={'private-route'}>Saved</NavLink>
+                <NavLink to={'saved'}>Saved</NavLink>
             </nav>
             <div>
                 <Outlet />
