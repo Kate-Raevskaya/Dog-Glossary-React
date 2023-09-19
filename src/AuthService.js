@@ -20,4 +20,8 @@ export default class AuthService {
         }
         return false
     }
+
+    static logOut() {
+        localStorage.removeItem('login:password')
+    }
 }

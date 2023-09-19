@@ -9,6 +9,7 @@ import PrivateRoute from './pages/PrivateRoute';
 import Saved from "./pages/Saved";
 import {AuthContext} from "./AuthContext";
 import {useAuth} from "./useAuth";
+import ErrorPage from "./ErrorPage";
 
 
 const root = ReactDOM.createRoot(
@@ -27,19 +28,25 @@ function Main() {
         {
             path: '/',
             element: <Root />,
+            errorElement: <ErrorPage />,
             children: [
                 {
-                    index: true,
-                    element: <DogsSearching />
-                },
-                {
-                    path: 'login',
-                    element: <Login />,
-                    action: loginAction(auth)
-                },
-                {
-                    path: 'saved',
-                    element: <PrivateRoute><Saved/></PrivateRoute>
+                    errorElement: <ErrorPage />,
+                    children: [
+                        {
+                            index: true,
+                            element: <DogsSearching />
+                        },
+                        {
+                            path: 'login',
+                            element: <Login />,
+                            action: loginAction(auth)
+                        },
+                        {
+                            path: 'saved',
+                            element: <PrivateRoute><Saved/></PrivateRoute>
+                        }
+                    ]
                 }
             ]
         }

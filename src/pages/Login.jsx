@@ -1,7 +1,5 @@
 import {Form, redirect, useActionData} from "react-router-dom";
 import AuthService from "../AuthService";
-import {useContext} from "react";
-import {AuthContext} from "../AuthContext";
 
 export function action({setIsAuth}) {
     return async function ({request}) {
