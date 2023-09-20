@@ -38,7 +38,7 @@ export default function Login() {
                         name='password'
                     />
                 </label>
-                {info !== undefined && !info.isAuth && <p>Login or password isn't correct</p>}
+                {info !== undefined && info === null && <p>Login or password isn't correct</p>}
                 <button type='submit'>Log in</button>
             </Form>
         </>

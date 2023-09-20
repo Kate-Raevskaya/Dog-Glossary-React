@@ -16,7 +16,7 @@ export default function Root() {
     return (
         <>
             <nav>
-                <NavLink to={''}>Search Dog</NavLink>
+                <NavLink to={'search'}>Search Dog</NavLink>
                 <NavLink to={'login'}>Log in</NavLink>
                 <NavLink to={'saved'}>Saved</NavLink>
                 {auth.isAuth && <button onClick={handleLogOut}>Log out</button>}
