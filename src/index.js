@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import ReactDOM from 'react-dom/client';
 import Root from './pages/Root';
 import {RouterProvider, createBrowserRouter, Navigate} from "react-router-dom";
@@ -14,6 +14,8 @@ import DogImage, {dogsBreedLoader, randomDogLoader} from "./pages/DogImage";
 import UnknownBreed from "./pages/UnknownBreed";
 import ListOfAllBreeds, {listOfAllBreedsLoader} from "./pages/ListOfAllBreeds";
 import ListOfSubBreeds, {listOfSubBreedsLoader} from "./pages/ListOfSubBreeds";
+import './rootStyle.scss';
+import AuthService from "./AuthService";
 
 
 const root = ReactDOM.createRoot(
@@ -27,6 +29,11 @@ root.render(
 
 function Main() {
     let auth = useAuth()
+    let [user, setUser] = useState(null)
+
+    useEffect(() => {
+        setUser({name:"test", savedDogs: new Set()})
+    }, [auth.isAuth])
 
     const router = createBrowserRouter([
         {
