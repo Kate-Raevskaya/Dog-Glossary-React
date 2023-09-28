@@ -1,0 +1,43 @@
+$primary-color: #261515;
+@mixin text($font-size: 20px, $font-color: $primary-color, $weight: bold) {
+  font-family: Calibri, serif;
+  font-size: $font-size;
+  color: $font-color;
+  font-weight: $weight;
+}
+
+html, body{margin: 0; padding: 0}
+
+#main-section {
+  display: flex;
+  justify-content: center;
+}
+
+
+nav {
+  height: 90px;
+  position: sticky;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  background-image: url("images/background-nav.png");
+  background-size: 45%;
+  padding-bottom: 10px;
+  a {
+    @include text($font-size: 30px, $font-color: $primary-color, $weight: bold);
+    text-decoration: none;
+    margin-right: 15px;
+    padding: 2px;
+    font-weight: bold;
+    &:hover {
+      background: rgba(51, 26, 26, 0.09);
+    }
+  }
+  button {
+    @include text($font-size: 22px, $font-color: $primary-color, $weight: bold);
+    margin-right: 15px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

@@ -24,7 +24,7 @@ export default function ListOfSubBreeds() {
 
     return (
         <ul>
-            {listOfSubBreeds.map(subBreed => (<li>{subBreed}</li>))}
+            {listOfSubBreeds.map(subBreed => (<li key={subBreed}>{subBreed}</li>))}
         </ul>
     )
 }

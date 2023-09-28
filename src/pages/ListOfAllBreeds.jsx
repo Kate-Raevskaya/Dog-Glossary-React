@@ -16,10 +16,10 @@ export default function ListOfAllBreeds() {
     return (
         <ul>
             {Object.keys(breedsList).map(breed => (
-                <li>
+                <li key={breed}>
                     {breed}
                     <ul>
-                        {breedsList[breed].map(subBreed => <li>{subBreed}</li>)}
+                        {breedsList[breed].map(subBreed => <li key={subBreed}>{subBreed}</li>)}
                     </ul>
                 </li>
             ))}

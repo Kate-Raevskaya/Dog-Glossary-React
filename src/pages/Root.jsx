@@ -2,7 +2,7 @@ import {NavLink, Outlet, useNavigate} from "react-router-dom";
 import {AuthContext} from "../AuthContext";
 import {useContext} from "react";
 import AuthService from "../AuthService";
-import '../rootStyle.scss';
+import '../root.scss';
 
 export default function Root() {
     let auth = useContext(AuthContext)
@@ -24,7 +24,7 @@ export default function Root() {
                 </div>
                 {auth.isAuth && <button onClick={handleLogOut}>Log out</button>}
             </nav>
-            <div>
+            <div id='main-section'>
                 <Outlet />
             </div>
         </>

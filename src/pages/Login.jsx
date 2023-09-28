@@ -1,5 +1,6 @@
-import {Form, redirect, useActionData} from "react-router-dom";
+import {Form, useActionData} from "react-router-dom";
 import AuthService from "../AuthService";
+import '../login.scss';
 
 export function action({setIsAuth}) {
     return async function ({request}) {
@@ -7,7 +8,8 @@ export function action({setIsAuth}) {
         let userCredential = Object.fromEntries(formData)
         if (AuthService.login(userCredential.login, userCredential.password)) {
             setIsAuth(true)
-            return redirect('/saved')
+            window.history.back()
+            return null
         } else {
             return null
         }
@@ -19,7 +21,7 @@ export default function Login() {
     let info = useActionData()
 
     return (
-        <>
+        <div id='login-card'>
             <h1>LOG IN</h1>
             <Form method='post'>
                 <label>
@@ -39,8 +41,16 @@ export default function Login() {
                     />
                 </label>
                 {info !== undefined && info === null && <p>Login or password isn't correct</p>}
-                <button type='submit'>Log in</button>
+                {/*<button type='submit'>Log in</button>*/}
+                <div className="login-button-container">
+                    <button type='submit' className="login-button">
+                        <span className="circle" aria-hidden="true">
+                            <span className="icon arrow"></span>
+                        </span>
+                        <span className="button-text">LOG IN</span>
+                    </button>
+                </div>
             </Form>
-        </>
+        </div>
     )
 }
