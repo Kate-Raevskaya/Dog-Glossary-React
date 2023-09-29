@@ -1,4 +1,5 @@
 $primary-color: #261515;
+//$navbar-height: calc(100vh * 30%);
 @mixin text($font-size: 20px, $font-color: $primary-color, $weight: bold) {
   font-family: Calibri, serif;
   font-size: $font-size;
@@ -8,15 +9,25 @@ $primary-color: #261515;
 
 html, body{margin: 0; padding: 0}
 
+#root {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+}
+
 #main-section {
   display: flex;
   justify-content: center;
+  height: 100%;
+  width: 100%;
 }
 
 
 nav {
-  height: 90px;
+  height: 120px;
   position: sticky;
+  top: 0;
   display: flex;
   justify-content: space-between;
   align-items: end;

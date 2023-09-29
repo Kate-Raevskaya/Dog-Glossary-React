@@ -1,5 +1,6 @@
 import {useState} from "react";
 import {Outlet, useNavigate} from "react-router-dom";
+import '../searchDogs.scss';
 
 export default function DogsSearching() {
     const [value, setValue] = useState("");
@@ -8,9 +9,9 @@ export default function DogsSearching() {
 
 
     return (
-        <>
+        <div id='search-section'>
             <div id='menu'>
-                <button onClick={() => navigate('dogs/random')}>Show random dog</button>
+                <button onClick={() => navigate('dogs/random')} className='btn-5'>Show random dog</button>
 
                 <label>
                     <input
@@ -22,8 +23,20 @@ export default function DogsSearching() {
                         onInput={e => setValue(e.target.value)}
                     />
                 </label>
-                <button onClick={() => navigate(`dogs/${breed}`)} disabled={!value}>Show breed</button>
-                <button onClick={() => navigate(`dogs/${breed}/sub-breeds`)} disabled={!value}>Show sub-breeds</button>
+                <button
+                    onClick={() => navigate(`dogs/${breed}`)}
+                    disabled={!value}
+                    className={!value && 'disabled'}
+                >
+                    Show breed
+                </button>
+                <button
+                    onClick={() => navigate(`dogs/${breed}/sub-breeds`)}
+                    disabled={!value}
+                    className={!value && 'disabled'}
+                >
+                    Show sub-breeds
+                </button>
 
                 <button onClick={() => navigate('dogs/all-breeds')}>Show all breeds</button>
             </div>
@@ -31,6 +44,6 @@ export default function DogsSearching() {
             <div id='container'>
                 <Outlet />
             </div>
-        </>
+        </div>
     )
 }

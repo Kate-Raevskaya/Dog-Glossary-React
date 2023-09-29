@@ -1,0 +1,37 @@
+@use 'root';
+
+@mixin button-style($bg: root.$primary-color, $color: #e7e7e7, $cursor: pointer) {
+  font-size: 17px;
+  color: $color;
+  border: transparent;
+  background-color: $bg;
+  border-radius: 5px;
+  &:hover {
+    cursor: $cursor;
+  }
+}
+
+#search-section {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  #menu {
+    display: grid;
+    grid-template-columns: auto 30% auto auto auto;
+    justify-items: center;
+    grid-gap: 3%;
+    margin: 20px 0;
+    button {
+      @include button-style($bg: root.$primary-color, $color: #e7e7e7, $cursor: pointer);
+
+      &.disabled {
+        @include button-style($bg: root.$primary-color, $color: #e7e7e7, $cursor: auto);
+      }
+    }
+    input {
+      height: 100%;
+      @include button-style($bg: #dedbdb, $color: root.$primary-color, $cursor: pointer);
+
+    }
+  }
+}

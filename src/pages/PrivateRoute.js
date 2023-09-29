@@ -1,6 +1,7 @@
 import {useNavigate} from "react-router-dom";
 import {AuthContext} from "../AuthContext";
 import {useContext} from "react";
+import '../errorPage.scss';
 
 export default function PrivateRoute({children}) {
     let {isAuth} = useContext(AuthContext)
@@ -9,9 +10,19 @@ export default function PrivateRoute({children}) {
     return (
         <>
             {isAuth ? children :
-                <div>
+                <div className='not-auth-message'>
                     <p>You're not authorized!</p>
-                    <button onClick={() => navigate('/login')}>Log in</button>
+                    <div className="login-button-container">
+                        <button
+                            className="login-button"
+                            onClick={() => navigate('/login')}
+                        >
+                        <span className="circle" aria-hidden="true">
+                            <span className="icon arrow"></span>
+                        </span>
+                            <span className="button-text">LOG IN</span>
+                        </button>
+                    </div>
                 </div>
             }
         </>
