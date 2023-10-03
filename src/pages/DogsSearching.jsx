@@ -41,7 +41,7 @@ export default function DogsSearching() {
                 <button onClick={() => navigate('dogs/all-breeds')}>Show all breeds</button>
             </div>
 
-            <div id='container'>
+            <div id='dog-container'>
                 <Outlet />
             </div>
         </div>

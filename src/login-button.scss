@@ -1,4 +1,4 @@
-@use 'root';
+@use 'mainStyle';
 
 @mixin transition($property: all, $duration: 0.45s, $ease: cubic-bezier(0.65,0,.076,1)) {
   transition: $property $duration $ease;
@@ -22,7 +22,7 @@
     border: 0;
     text-decoration: none;
     background: transparent;
-    @include root.text($font-size: 22px, $font-color: root.$primary-color, $weight: normal);
+    @include mainStyle.text($font-size: 22px, $font-color: mainStyle.$primary-color, $weight: normal);
     margin: 10px 0;
     &.login-button {
       width: 12rem;
@@ -34,7 +34,7 @@
         margin: 0;
         width: 3rem;
         height: 3rem;
-        background: root.$primary-color;
+        background: mainStyle.$primary-color;
         border-radius: 1.625rem;
         .icon {
           @include transition(all, 0.45s, cubic-bezier(0.65,0,.076,1));
@@ -72,7 +72,7 @@
         bottom: 0;
         padding: 0.75rem 0;
         margin: 0 0 0 1.85rem;
-        color: root.$primary-color;
+        color: mainStyle.$primary-color;
         font-weight: 600;
         text-align: center;
       }

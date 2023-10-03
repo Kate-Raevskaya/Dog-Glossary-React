@@ -1,0 +1,7 @@
+$primary-color: #261515;
+@mixin text($font-size: 20px, $font-color: $primary-color, $weight: bold) {
+  font-family: Calibri, serif;
+  font-size: $font-size;
+  color: $font-color;
+  font-weight: $weight;
+}

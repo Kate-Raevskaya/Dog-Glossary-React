@@ -1,5 +1,5 @@
 @use 'login-button';
-@use 'root';
+@use 'mainStyle';
 
 .not-auth-message {
   height: 100%;
@@ -7,7 +7,7 @@
   flex-direction: column;
   justify-content: center;
   p {
-    @include root.text($font-size: 30px, $font-color: root.$primary-color, $weight: bold);
+    @include mainStyle.text($font-size: 30px, $font-color: mainStyle.$primary-color, $weight: bold);
     margin: 0;
   }
 }

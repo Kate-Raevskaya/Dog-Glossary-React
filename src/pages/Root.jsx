@@ -1,12 +1,23 @@
 import {NavLink, Outlet, useNavigate} from "react-router-dom";
 import {AuthContext} from "../AuthContext";
-import {useContext} from "react";
+import {useContext, useEffect, useState} from "react";
 import AuthService from "../AuthService";
 import '../root.scss';
 
 export default function Root() {
     let auth = useContext(AuthContext)
     let navigate = useNavigate()
+
+    const [scrollTop, setScrollTop] = useState(0);
+
+    useEffect(() => {
+        function handleScroll(event) {
+            setScrollTop(window.scrollY)
+        }
+        window.addEventListener('scroll', handleScroll)
+
+        return () => {window.removeEventListener('scroll', handleScroll)}
+    }, [])
 
     function handleLogOut() {
         auth.setIsAuth(false)
@@ -16,7 +27,7 @@ export default function Root() {
 
     return (
         <>
-            <nav>
+            <nav className={scrollTop > 0 ? 'small-nav' : undefined}>
                 <div id='navbar'>
                     <NavLink to={'search'}>Search Dog</NavLink>
                     <NavLink to={'saved'}>Saved</NavLink>

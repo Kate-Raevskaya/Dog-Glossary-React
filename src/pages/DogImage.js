@@ -1,8 +1,8 @@
-import {redirect, useLoaderData, useNavigate} from "react-router-dom";
-import {getBreedImage, getRandomDog, saveDog} from "../dogAPI";
-import {useContext} from "react";
+import {useLoaderData, useNavigate} from "react-router-dom";
+import {getBreedImage, getRandomDog} from "../dogAPI";
+import {useContext, useEffect, useState} from "react";
 import {AuthContext} from "../AuthContext";
-import AuthService from "../AuthService";
+import userService from "../userService";
 
 export async function randomDogLoader() {
     try {
@@ -27,19 +27,38 @@ export default function DogImage() {
     let {isAuth} = useContext(AuthContext)
     let navigate = useNavigate()
 
+    const [isLiked, setIsLiked] = useState(false)
+
+    useEffect(() => {
+        if (isAuth) {
+            setIsLiked(userService.getUsersDogs().has(imageUrl))
+        } else {
+            setIsLiked(false)
+        }
+    }, [imageUrl, isAuth])
+
     function handleSavedDog(imageUrl) {
         if (!isAuth) {
             return navigate('/login')
         }
-        AuthService.getUsersDogs().add(imageUrl)
+        if (isLiked) {
+            userService.getUsersDogs().delete(imageUrl)
+        } else {
+            userService.getUsersDogs().add(imageUrl)
+        }
+        setIsLiked(!isLiked)
     }
-
 
 
     return (
         <>
-            <button onClick={() => handleSavedDog(imageUrl)}>Save</button>
-            <img id='dog-image' src={imageUrl} alt='Dog'/>
+            <div id='dog-card'>
+                <div id='dog-image'>
+                    <img src={imageUrl} alt='Dog'/>
+                </div>
+                <div id='save-button' onClick={() => handleSavedDog(imageUrl)}
+                     className={isLiked ? 'liked' : undefined}></div>
+            </div>
         </>
     )
 }

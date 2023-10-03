@@ -1,5 +1,5 @@
 import {getListOfBreeds} from "../dogAPI";
-import {redirect, useLoaderData} from "react-router-dom";
+import {useLoaderData} from "react-router-dom";
 
 export async function listOfSubBreedsLoader({params}) {
     let listAllBreeds;

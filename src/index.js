@@ -14,7 +14,7 @@ import DogImage, {dogsBreedLoader, randomDogLoader} from "./pages/DogImage";
 import UnknownBreed from "./pages/UnknownBreed";
 import ListOfAllBreeds, {listOfAllBreedsLoader} from "./pages/ListOfAllBreeds";
 import ListOfSubBreeds, {listOfSubBreedsLoader} from "./pages/ListOfSubBreeds";
-import './root.scss';
+import './index.scss';
 
 
 const root = ReactDOM.createRoot(
