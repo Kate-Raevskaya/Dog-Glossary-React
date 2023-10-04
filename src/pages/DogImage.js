@@ -1,4 +1,4 @@
-import {useLoaderData, useNavigate} from "react-router-dom";
+import {useLoaderData, useNavigate, useNavigation} from "react-router-dom";
 import {getBreedImage, getRandomDog} from "../dogAPI";
 import {useContext, useEffect, useState} from "react";
 import {AuthContext} from "../AuthContext";
@@ -6,16 +6,40 @@ import userService from "../userService";
 
 export async function randomDogLoader() {
     try {
-        return await getRandomDog()
+        let url = await getRandomDog()
+        return await getImage(url);
     } catch (error) {
         console.log(error)
     }
 }
 
+function loadBlob(blob) {
+    return new Promise((resolve, reject) => {
+        let reader = new FileReader();
+        reader.addEventListener("load", () => {
+            resolve(reader.result)
+        }, false); // TODO: read about false
+        reader.addEventListener("error", () => {
+            reject("error");
+        })
+        reader.readAsDataURL(blob);
+    });
+}
+
+async function getImage(url) {
+    let response = await fetch(url)
+    if (response.ok) {
+        let blob = await response.blob()
+        return await loadBlob(blob)
+    }
+    throw new Error('Breed not found!')
+}
+
 export async function dogsBreedLoader({params}) {
     try {
         params.breed.toLowerCase()
-        return await getBreedImage(params.breed)
+        let url = await getBreedImage(params.breed)
+        return await getImage(url);
     } catch (error) {
         throw new Error('Breed not found!')
     }
@@ -26,6 +50,7 @@ export default function DogImage() {
     let imageUrl = useLoaderData()
     let {isAuth} = useContext(AuthContext)
     let navigate = useNavigate()
+    let navigation = useNavigation()
 
     const [isLiked, setIsLiked] = useState(false)
 
@@ -55,6 +80,7 @@ export default function DogImage() {
             <div className='dog-card'>
                 <div className='dog-image'>
                     <img src={imageUrl} alt='Dog'/>
+                    <p>{navigation.state}</p>
                 </div>
                 <div id='save-button' onClick={() => handleSavedDog(imageUrl)}
                      className={isLiked ? 'liked' : undefined}></div>
