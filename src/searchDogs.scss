@@ -1,4 +1,5 @@
 @use 'mainStyle';
+@use 'dogsCard';
 
 @mixin button-style($bg: mainStyle.$primary-color, $color: #e7e7e7, $cursor: pointer) {
   font-size: 18px;
@@ -6,6 +7,7 @@
   border: transparent;
   background-color: $bg;
   border-radius: 5px;
+  padding: 2px 15px;
   &:hover {
     cursor: $cursor;
   }
@@ -15,14 +17,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  //width: 700px;
   #menu {
     display: grid;
     grid-template-columns: auto auto auto auto auto;
     justify-items: center;
     grid-gap: 15px;
     margin: 20px 0;
-    width: 700px;
+    width: 800px;
     button {
       @include button-style($bg: mainStyle.$primary-color, $color: #e7e7e7, $cursor: pointer);
 
@@ -37,32 +38,18 @@
     input {
       height: 100%;
       @include button-style($bg: #dedbdb, $color: mainStyle.$primary-color, $cursor: pointer);
+      padding: 0 4px;
 
     }
   }
-  #dog-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 500px;
-    background-color: rgba(38, 21, 21, 0.15);
-    box-shadow: 0 0 5px rgb(100, 100, 100);
-    border-radius: 5px;
 
-    #dog-image  {
-      height: 400px;
+  @include dogsCard.dogsCard($cardHeight: 500px, $imageContainerHeight: 400px);
 
-      img {
-        height: 100%;
-        width: auto;
-      }
-    }
-
+  .dog-card {
     #save-button {
       position: relative;
       width: 70px;
       margin-top: 22px;
-      //height: 130px;
     }
     #save-button:before {
       position: absolute;

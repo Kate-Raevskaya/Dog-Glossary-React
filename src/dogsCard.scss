@@ -1,0 +1,22 @@
+@mixin dogsCard($cardHeight: 500px, $imageContainerHeight: 400px) {
+  .dog-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: $cardHeight;
+    width: fit-content;
+    background-color: rgba(38, 21, 21, 0.15);
+    box-shadow: 0 0 5px rgb(100, 100, 100);
+    border-radius: 5px;
+
+    .dog-image {
+      height: $imageContainerHeight;
+
+      img {
+        height: 100%;
+        width: auto;
+      }
+    }
+  }
+}
+

@@ -1,5 +1,6 @@
 import {useState} from "react";
 import userService from "../userService";
+import '../saved.scss';
 
 export default function Saved() {
     let dogsUrls=[];
@@ -17,13 +18,15 @@ export default function Saved() {
         <div className='dogs-container'>
             {dogs.length === 0 && <p id='empty'>There will be your added dogs &#128021;</p>}
             {dogs.map(dogUrl => (
-                <div key={dogUrl}>
-                    <img src={dogUrl} alt='Dog' />
-                    <button
+                <div key={dogUrl} className='dog-card'>
+                    <div className='dog-image'>
+                        <img src={dogUrl} alt='Dog' />
+                    </div>
+                    <div
+                        id='delete-button'
                         onClick={() => handleDeleteButton(dogUrl)}
                     >
-                        Delete
-                    </button>
+                    </div>
                 </div>
             ))}
         </div>

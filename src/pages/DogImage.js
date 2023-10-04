@@ -52,8 +52,8 @@ export default function DogImage() {
 
     return (
         <>
-            <div id='dog-card'>
-                <div id='dog-image'>
+            <div className='dog-card'>
+                <div className='dog-image'>
                     <img src={imageUrl} alt='Dog'/>
                 </div>
                 <div id='save-button' onClick={() => handleSavedDog(imageUrl)}

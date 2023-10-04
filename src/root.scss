@@ -10,8 +10,6 @@
   display: flex;
   justify-content: center;
   position: relative;
-  height: calc(100vh - 120px);
-  width: 100%;
   margin-top: 120px;
 
   @include mainStyle.text($font-size: 30px, $font-color: mainStyle.$primary-color, $weight: bold);

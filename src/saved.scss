@@ -1,7 +1,48 @@
 @use 'mainStyle';
+@use "dogsCard";
 
 .dogs-container {
-  display: grid;
-  grid-template-columns: auto auto auto auto;
-  grid-gap: 10px;
+  display: flex;
+  justify-content: space-around;
+  height: fit-content;
+  margin: 30px;
+  flex-wrap: wrap;
+  gap: 30px;
+
+  @include dogsCard.dogsCard($cardHeight: 360px, $imageContainerHeight: 300px);
+
+  .dog-card {
+    #delete-button {
+      margin: auto;
+      position: relative;
+      width: 24px;
+      height: 24px;
+      opacity: 0.2;
+      cursor: pointer;
+      transition: opacity ease 0.5s;
+
+      &:hover {
+        opacity: 1;
+      }
+
+      &:before,
+      &:after {
+        content: '';
+        position: absolute;
+        top: 10px;
+        display: block;
+        width: 24px;
+        height: 3px;
+        background: mainStyle.$primary-color;
+      }
+
+      &:before {
+        transform: rotate(45deg);
+      }
+
+      &:after {
+        transform: rotate(-45deg);
+      }
+    }
+  }
 }
