@@ -9,14 +9,19 @@ export default function Root() {
     let navigate = useNavigate()
 
     const [scrollTop, setScrollTop] = useState(0);
+    const [smallNavbar, setSmallNavbar] = useState(false);
+
 
     useEffect(() => {
         function handleScroll(event) {
             setScrollTop(window.scrollY)
         }
+
         window.addEventListener('scroll', handleScroll)
 
-        return () => {window.removeEventListener('scroll', handleScroll)}
+        return () => {
+            window.removeEventListener('scroll', handleScroll)
+        }
     }, [])
 
     function handleLogOut() {
@@ -28,15 +33,23 @@ export default function Root() {
     return (
         <>
             <nav className={scrollTop > 0 ? 'small-nav' : undefined}>
-                <div id='navbar'>
-                    <NavLink to={'search'}>Search Dog</NavLink>
-                    <NavLink to={'saved'}>Saved</NavLink>
-                    {!auth.isAuth && <NavLink to={'login'}>Log in</NavLink>}
+                <div
+                    className='burger-btn'
+                    onClick={() => setSmallNavbar(!smallNavbar)}
+                >
+                    <span />
                 </div>
-                {auth.isAuth && <button onClick={handleLogOut}>Log out</button>}
+                <div className={smallNavbar ? 'small-navbar' : 'navbar'}>
+                    <div id='pages'>
+                        <NavLink to={'search'}>Search Dog</NavLink>
+                        <NavLink to={'saved'}>Saved</NavLink>
+                        {!auth.isAuth && <NavLink to={'login'}>Log in</NavLink>}
+                    </div>
+                    {auth.isAuth && <div onClick={handleLogOut} className='log-out-button'>Log out</div>}
+                </div>
             </nav>
             <div id='main-section'>
-                <Outlet />
+                <Outlet/>
             </div>
         </>
     )

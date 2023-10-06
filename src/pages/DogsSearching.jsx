@@ -33,7 +33,7 @@ export default function DogsSearching() {
                 <button
                     onClick={() => navigate(`dogs/${breed}/sub-breeds`)}
                     disabled={!value}
-                    className={!value && 'disabled'}
+                    className={!value ? 'disabled' : undefined}
                 >
                     Show sub-breeds
                 </button>

@@ -22,32 +22,100 @@ nav {
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 10000;
+  z-index: 100;
   display: flex;
-  justify-content: space-between;
   align-items: end;
   background-image: url("images/background-nav.png");
   background-size: 45%;
-  padding-bottom: 10px;
   transition: height 300ms;
-  &.small-nav {
-    height: 50px;
+
+  @media (max-width: 600px) {
+    height: fit-content;
+    background-size: 70%;
+    flex-direction: column;
+    align-items: center;
   }
-  a {
+
+  .navbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+  }
+
+  .small-navbar {
+    display: none;
+
+    @media (max-width: 600px) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      #pages {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+      }
+    }
+  }
+
+  &.small-nav {
+    height: 60px;
+  }
+  a, .log-out-button {
     @include mainStyle.text($font-size: 30px, $font-color: mainStyle.$primary-color, $weight: bold);
     text-decoration: none;
     margin-right: 15px;
     padding: 2px;
-    font-weight: bold;
+
+    @media (max-width: 600px) {
+      margin: 5px 0;
+    }
+
     &:hover {
+      cursor: pointer;
       background: rgba(51, 26, 26, 0.09);
     }
   }
-  button {
-    @include mainStyle.text($font-size: 22px, $font-color: mainStyle.$primary-color, $weight: bold);
-    margin-right: 15px;
-    &:hover {
-      cursor: pointer;
-    }
+}
+
+.burger-btn {
+  width: 25px;
+  height: 25px;
+  position: relative;
+  margin-right: 15px;
+  margin-top: 10px;
+  align-self: flex-end;
+  display: none;
+
+  @media (max-width: 600px) {
+    display: flex;
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 25px;
+    height: 3px;
+    background-color: mainStyle.$primary-color;
+  }
+
+  span {
+    position: absolute;
+    top: 11px;
+    width: 25px;
+    height: 3px;
+    background-color: mainStyle.$primary-color;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 25px;
+    height: 3px;
+    background-color: mainStyle.$primary-color;
   }
 }

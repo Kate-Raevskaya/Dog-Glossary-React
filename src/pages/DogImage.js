@@ -13,12 +13,22 @@ export async function randomDogLoader() {
     }
 }
 
+export async function dogsBreedLoader({params}) {
+    try {
+        params.breed.toLowerCase()
+        let url = await getBreedImage(params.breed)
+        return await getImage(url);
+    } catch (error) {
+        throw new Error('Breed not found!')
+    }
+}
+
 function loadBlob(blob) {
     return new Promise((resolve, reject) => {
         let reader = new FileReader();
         reader.addEventListener("load", () => {
             resolve(reader.result)
-        }, false); // TODO: read about false
+        });
         reader.addEventListener("error", () => {
             reject("error");
         })
@@ -33,16 +43,6 @@ async function getImage(url) {
         return await loadBlob(blob)
     }
     throw new Error('Breed not found!')
-}
-
-export async function dogsBreedLoader({params}) {
-    try {
-        params.breed.toLowerCase()
-        let url = await getBreedImage(params.breed)
-        return await getImage(url);
-    } catch (error) {
-        throw new Error('Breed not found!')
-    }
 }
 
 
@@ -77,10 +77,17 @@ export default function DogImage() {
 
     return (
         <>
-            <div className='dog-card'>
+            <div className={navigation.state === 'loading' ? 'dog-card loading' : 'dog-card'} >
                 <div className='dog-image'>
                     <img src={imageUrl} alt='Dog'/>
-                    <p>{navigation.state}</p>
+                    {/*{navigation.state === 'loading' ?*/}
+                    {/*    <>*/}
+                    {/*        <img src='../images/loading.png' alt='loading'/>*/}
+                    {/*        <p>{navigation.state}</p>*/}
+                    {/*    </>*/}
+                    {/*     :*/}
+                    {/*    <img src={imageUrl} alt='Dog'/>*/}
+                    {/*}*/}
                 </div>
                 <div id='save-button' onClick={() => handleSavedDog(imageUrl)}
                      className={isLiked ? 'liked' : undefined}></div>
