@@ -15,6 +15,7 @@ export default function Root() {
     useEffect(() => {
         function handleScroll(event) {
             setScrollTop(window.scrollY)
+            setSmallNavbar(false)
         }
 
         window.addEventListener('scroll', handleScroll)
@@ -27,6 +28,8 @@ export default function Root() {
     function handleLogOut() {
         auth.setIsAuth(false)
         AuthService.logOut()
+        setSmallNavbar(false)
+
         navigate('/login')
     }
 
@@ -41,14 +44,23 @@ export default function Root() {
                 </div>
                 <div className={smallNavbar ? 'small-navbar' : 'navbar'}>
                     <div id='pages'>
-                        <NavLink to={'search'}>Search Dog</NavLink>
-                        <NavLink to={'saved'}>Saved</NavLink>
-                        {!auth.isAuth && <NavLink to={'login'}>Log in</NavLink>}
+                        <NavLink to={'search'} onClick={() => setSmallNavbar(false)}>Search Dog</NavLink>
+                        <NavLink to={'saved'} onClick={() => setSmallNavbar(false)}>Saved</NavLink>
+                        {!auth.isAuth && <NavLink to={'login'} onClick={() => setSmallNavbar(false)}>Log in</NavLink>}
                     </div>
-                    {auth.isAuth && <div onClick={handleLogOut} className='log-out-button'>Log out</div>}
+                    {auth.isAuth &&
+                        <div
+                            onClick={handleLogOut}
+                            className='log-out-button'
+                        >
+                            Log out
+                        </div>}
                 </div>
             </nav>
-            <div id='main-section'>
+            <div
+                id='main-section'
+                onClick={() => setSmallNavbar(false)}
+            >
                 <Outlet/>
             </div>
         </>

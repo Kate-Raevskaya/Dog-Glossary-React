@@ -11,8 +11,13 @@
   justify-content: center;
   position: relative;
   margin-top: 120px;
+  height: fit-content;
 
   @include mainStyle.text($font-size: 30px, $font-color: mainStyle.$primary-color, $weight: bold);
+
+  @media (max-width: 600px) {
+    margin-top: 45px;
+  }
 }
 
 
@@ -41,6 +46,10 @@ nav {
     display: flex;
     justify-content: space-between;
     padding: 10px 0;
+
+    @media (max-width: 600px) {
+      display: none;
+    }
   }
 
   .small-navbar {
@@ -61,7 +70,11 @@ nav {
   }
 
   &.small-nav {
-    height: 60px;
+    height: 55px;
+
+    @media (max-width: 600px) {
+      height: 45px;
+    }
   }
   a, .log-out-button {
     @include mainStyle.text($font-size: 30px, $font-color: mainStyle.$primary-color, $weight: bold);
@@ -71,6 +84,7 @@ nav {
 
     @media (max-width: 600px) {
       margin: 5px 0;
+      padding: 2px 70px;
     }
 
     &:hover {
@@ -86,6 +100,7 @@ nav {
   position: relative;
   margin-right: 15px;
   margin-top: 10px;
+  margin-bottom: 10px;
   align-self: flex-end;
   display: none;
 

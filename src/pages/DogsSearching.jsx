@@ -11,7 +11,7 @@ export default function DogsSearching() {
     return (
         <div id='search-section'>
             <div id='menu'>
-                <button onClick={() => navigate('dogs/random')} className='btn-5'>Show random dog</button>
+                <button onClick={() => navigate('dogs/random')}>Show random dog</button>
 
                 <label>
                     <input

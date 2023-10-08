@@ -24,6 +24,13 @@
     grid-gap: 15px;
     margin: 20px 0;
     width: 800px;
+
+    @media (max-width: 600px) {
+      display: grid;
+      grid-template-columns: auto auto;
+      width: auto;
+    }
+
     button {
       @include button-style($bg: mainStyle.$primary-color, $color: #e7e7e7, $cursor: pointer);
 
