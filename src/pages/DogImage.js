@@ -3,6 +3,7 @@ import {getBreedImage, getRandomDog} from "../dogAPI";
 import {useContext, useEffect, useState} from "react";
 import {AuthContext} from "../AuthContext";
 import userService from "../userService";
+import loadingImage from "../images/loading.png";
 
 export async function randomDogLoader() {
     try {
@@ -10,6 +11,7 @@ export async function randomDogLoader() {
         return await getImage(url);
     } catch (error) {
         console.log(error)
+        throw new Error(error)
     }
 }
 
@@ -79,15 +81,14 @@ export default function DogImage() {
         <>
             <div className={navigation.state === 'loading' ? 'dog-card loading' : 'dog-card'} >
                 <div className='dog-image'>
-                    <img src={imageUrl} alt='Dog'/>
-                    {/*{navigation.state === 'loading' ?*/}
-                    {/*    <>*/}
-                    {/*        <img src='../images/loading.png' alt='loading'/>*/}
-                    {/*        <p>{navigation.state}</p>*/}
-                    {/*    </>*/}
-                    {/*     :*/}
-                    {/*    <img src={imageUrl} alt='Dog'/>*/}
-                    {/*}*/}
+                    {/*<img src={imageUrl} alt='Dog'/>*/}
+                    {navigation.state === 'loading' ?
+                        <>
+                            <img src={loadingImage} alt='loading'/>
+                        </>
+                         :
+                        <img src={imageUrl} alt='Dog'/>
+                    }
                 </div>
                 <div id='save-button' onClick={() => handleSavedDog(imageUrl)}
                      className={isLiked ? 'liked' : undefined}></div>

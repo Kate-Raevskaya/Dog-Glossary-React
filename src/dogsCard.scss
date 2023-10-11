@@ -9,6 +9,11 @@
     box-shadow: 0 0 5px rgb(100, 100, 100);
     border-radius: 5px;
 
+    @media (max-width: 600px) {
+      width: 100%;
+      height: auto;
+    }
+
     &.loading {
       opacity: 0.25;
       transition: opacity 3s;
@@ -18,9 +23,20 @@
     .dog-image {
       height: $imageContainerHeight;
 
+      @media (max-width: 600px) {
+        height: auto;
+        max-height: 400px;
+        overflow: hidden;
+      }
+
       img {
         height: 100%;
         width: auto;
+
+        @media (max-width: 600px) {
+          height: auto;
+          width: 100%;
+        }
       }
     }
   }

@@ -5,11 +5,10 @@
   display: flex;
   justify-content: space-around;
   height: fit-content;
-  margin: 30px;
   flex-wrap: wrap;
   gap: 30px;
 
-  @include dogsCard.dogsCard($cardHeight: 360px, $imageContainerHeight: 300px);
+  @include dogsCard.dogsCard($cardHeight: 360px, $imageContainerHeight: 300);
 
   .dog-card {
     #delete-button {

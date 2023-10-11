@@ -11,9 +11,9 @@ export default function DogsSearching() {
     return (
         <div id='search-section'>
             <div id='menu'>
-                <button onClick={() => navigate('dogs/random')}>Show random dog</button>
+                <button id='random-btn' onClick={() => navigate('dogs/random')}>Show random dog</button>
 
-                <label>
+                <label id='input-breed'>
                     <input
                         type='text'
                         placeholder='Enter a breed'
@@ -24,6 +24,7 @@ export default function DogsSearching() {
                     />
                 </label>
                 <button
+                    id='breed-btn'
                     onClick={() => navigate(`dogs/${breed}`)}
                     disabled={!value}
                     className={!value && 'disabled'}
@@ -31,6 +32,7 @@ export default function DogsSearching() {
                     Show breed
                 </button>
                 <button
+                    id='sub-breed-btn'
                     onClick={() => navigate(`dogs/${breed}/sub-breeds`)}
                     disabled={!value}
                     className={!value ? 'disabled' : undefined}
@@ -38,7 +40,7 @@ export default function DogsSearching() {
                     Show sub-breeds
                 </button>
 
-                <button onClick={() => navigate('dogs/all-breeds')}>Show all breeds</button>
+                <button id='all-breed-btn' onClick={() => navigate('dogs/all-breeds')}>Show all breeds</button>
             </div>
 
             <div id='dog-container'>
