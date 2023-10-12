@@ -1,4 +1,4 @@
-@use 'mainStyle';
+@use '../mainStyle';
 
 
 #login-page {
@@ -20,7 +20,7 @@
     text-align: center;
 
     @media (max-width: 600px) {
-      width: 300px;
+      width: fit-content;
       margin: 0;
     }
 
@@ -32,10 +32,12 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
+      box-sizing: border-box;
       @include mainStyle.text($font-size: 25px, $font-color: mainStyle.$primary-color, $weight: normal);
 
       @media (max-width: 600px) {
         align-items: center;
+        margin: 7px;
 
         label {
           display: flex;
@@ -44,7 +46,8 @@
 
           input {
             @include mainStyle.text($font-size: 100%, $font-color: mainStyle.$primary-color, $weight: normal);
-            padding: 5px 0;
+            padding: 7px 0;
+            box-sizing: border-box;
           }
         }
       }

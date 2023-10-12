@@ -1,6 +1,6 @@
 import {useState} from "react";
 import {Outlet, useNavigate} from "react-router-dom";
-import '../searchDogs.scss';
+import './dogsSearching.scss';
 
 export default function DogsSearching() {
     const [value, setValue] = useState("");

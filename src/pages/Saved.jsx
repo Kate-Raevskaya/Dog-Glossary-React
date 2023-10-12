@@ -1,6 +1,6 @@
 import {useState} from "react";
 import userService from "../userService";
-import '../saved.scss';
+import './saved.scss';
 
 export default function Saved() {
     let dogsUrls=[];

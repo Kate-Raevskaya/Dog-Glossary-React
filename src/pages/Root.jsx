@@ -2,7 +2,7 @@ import {NavLink, Outlet, useNavigate} from "react-router-dom";
 import {AuthContext} from "../AuthContext";
 import {useContext, useEffect, useState} from "react";
 import AuthService from "../AuthService";
-import '../root.scss';
+import './root.scss';
 
 export default function Root() {
     let auth = useContext(AuthContext)

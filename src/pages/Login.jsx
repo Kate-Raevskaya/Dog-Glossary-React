@@ -1,6 +1,6 @@
 import {Form, useActionData} from "react-router-dom";
 import AuthService from "../AuthService";
-import '../login.scss';
+import './login.scss';
 
 export function action({setIsAuth}) {
     return async function ({request}) {

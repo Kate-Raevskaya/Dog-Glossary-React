@@ -1,4 +1,4 @@
-@use 'mainStyle';
+@use '../mainStyle';
 @use 'dogsCard';
 
 @mixin button-style($bg: mainStyle.$primary-color, $color: #e7e7e7, $cursor: pointer) {
@@ -31,6 +31,10 @@
       justify-items: stretch;
       grid-gap: 15px;
       width: auto;
+
+      button {
+        height: 50px;
+      }
 
       #input-breed {
         grid-area: 2 / 1 / 2 / 3;

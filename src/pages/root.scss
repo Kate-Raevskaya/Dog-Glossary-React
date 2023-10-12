@@ -1,4 +1,4 @@
-@use 'mainStyle';
+@use '../mainStyle';
 
 #root {
   display: flex;
@@ -29,7 +29,7 @@ nav {
   z-index: 100;
   display: flex;
   align-items: end;
-  background-image: url("images/background-nav.png");
+  background-image: url("../images/background-nav.png");
   background-size: 45%;
   transition: height 300ms;
 

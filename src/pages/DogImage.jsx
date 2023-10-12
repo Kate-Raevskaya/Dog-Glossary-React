@@ -16,8 +16,8 @@ export async function randomDogLoader() {
 
 export async function dogsBreedLoader({params}) {
     try {
-        params.breed.toLowerCase()
-        let url = await getBreedImage(params.breed)
+        let breed= params.breed.toLowerCase()
+        let url = await getBreedImage(breed)
         return await getImage(url);
     } catch (error) {
         throw new Error('Breed not found!')
