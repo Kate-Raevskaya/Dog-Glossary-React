@@ -46,7 +46,8 @@ function Main() {
                                 {
                                     path: 'dogs/random',
                                     element: <DogImage />,
-                                    loader: randomDogLoader
+                                    loader: randomDogLoader,
+                                    errorElement: <UnknownBreed />
                                 },
                                 {
                                     path: 'dogs/:breed?',

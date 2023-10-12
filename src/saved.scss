@@ -1,46 +1,74 @@
 @use 'mainStyle';
 @use "dogsCard";
 
-.dogs-container {
+#saved {
   display: flex;
-  justify-content: space-around;
-  height: fit-content;
-  flex-wrap: wrap;
-  gap: 30px;
+  flex-direction: column;
+  align-items: center;
 
-  @include dogsCard.dogsCard($cardHeight: 360px, $imageContainerHeight: 300);
+  #favorite-dogs-header {
+    margin-top: 10px;
+  }
 
-  .dog-card {
-    #delete-button {
-      margin: auto;
-      position: relative;
-      width: 24px;
-      height: 24px;
-      opacity: 0.2;
-      cursor: pointer;
-      transition: opacity ease 0.5s;
+  @media (max-width: 600px) {
+    #empty {
+      font-size: 25px;
+      text-align: center;
+    }
+  }
 
-      &:hover {
-        opacity: 1;
-      }
+  .dogs-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
 
-      &:before,
-      &:after {
-        content: '';
-        position: absolute;
-        top: 10px;
-        display: block;
+
+    @include dogsCard.dogsCard($cardHeight: 360px, $imageContainerHeight: 300px);
+
+    .dog-card {
+      #delete-button {
+        margin: auto;
+        position: relative;
         width: 24px;
-        height: 3px;
-        background: mainStyle.$primary-color;
-      }
+        height: 24px;
+        opacity: 0.2;
+        cursor: pointer;
+        transition: opacity ease 0.5s;
 
-      &:before {
-        transform: rotate(45deg);
-      }
+        &:hover {
+          opacity: 1;
+        }
 
-      &:after {
-        transform: rotate(-45deg);
+        &:before,
+        &:after {
+          content: '';
+          position: absolute;
+          top: 10px;
+          display: block;
+          width: 24px;
+          height: 3px;
+          background: mainStyle.$primary-color;
+        }
+
+        &:before {
+          transform: rotate(45deg);
+        }
+
+        &:after {
+          transform: rotate(-45deg);
+        }
+
+        @media (max-width: 600px) {
+          width: 40px;
+          height: 40px;
+          margin: 7px 0;
+
+          &:before, &:after {
+            width: 40px;
+            top: 15px;
+          }
+        }
       }
     }
   }

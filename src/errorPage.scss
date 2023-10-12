@@ -2,7 +2,6 @@
 @use 'mainStyle';
 
 .not-auth-message {
-  height: calc(100vh - 120px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -10,5 +9,10 @@
     @include mainStyle.text($font-size: 30px, $font-color: mainStyle.$primary-color, $weight: bold);
     margin: 0;
   }
+}
+
+#unknown {
+  white-space: pre-wrap;
+  text-align: center;
 }
 

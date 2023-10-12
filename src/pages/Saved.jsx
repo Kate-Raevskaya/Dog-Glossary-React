@@ -15,20 +15,23 @@ export default function Saved() {
 
 
     return (
-        <div className='dogs-container'>
-            {dogs.length === 0 && <p id='empty'>There will be your added dogs &#128021;</p>}
-            {dogs.map(dogUrl => (
-                <div key={dogUrl} className='dog-card'>
-                    <div className='dog-image'>
-                        <img src={dogUrl} alt='Dog' />
+        <div id="saved">
+            {dogs.length === 0 ? <p id='empty'>There will be your added dogs &#128021;</p>
+                : <p id='favorite-dogs-header'>Your favorite dogs&#x2764;&#xfe0f;</p>}
+            <div className='dogs-container'>
+                {dogs.map(dogUrl => (
+                    <div key={dogUrl} className='dog-card'>
+                        <div className='dog-image'>
+                            <img src={dogUrl} alt='Dog' />
+                        </div>
+                        <div
+                            id='delete-button'
+                            onClick={() => handleDeleteButton(dogUrl)}
+                        >
+                        </div>
                     </div>
-                    <div
-                        id='delete-button'
-                        onClick={() => handleDeleteButton(dogUrl)}
-                    >
-                    </div>
-                </div>
-            ))}
+                ))}
+            </div>
         </div>
     )
 }
